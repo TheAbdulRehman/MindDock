@@ -1,8 +1,12 @@
-import { updateSession } from "@/lib/supabase/proxy";
-import { type NextRequest } from "next/server";
+// Supabase session refresh is intentionally disabled while we re-scaffold the
+// project. The client lives in `lib/supabase/*` — restore the two lines below
+// to wire session refresh back into the proxy.
+// import { updateSession } from "@/lib/supabase/proxy";
+import { NextResponse, type NextRequest } from "next/server";
 
 export async function proxy(request: NextRequest) {
-  return await updateSession(request);
+  // return await updateSession(request);
+  return NextResponse.next({ request });
 }
 
 export const config = {
